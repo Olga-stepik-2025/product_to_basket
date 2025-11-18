@@ -1,5 +1,5 @@
-from base_page import BasePage
-from locators import ProductPageLocators
+from .base_page import BasePage
+from .locators import ProductPageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -38,15 +38,15 @@ class ProductPage(BasePage):
                 *ProductPageLocators.SUCCESS_MESSAGE
             )
             message_text = success_message.text
-            
+
             # Проверяем, что название товара в сообщении совпадает
             assert product_name in message_text, \
                 f"Expected '{product_name}' in message, but got: {message_text}"
-            
+
             print(f"✅ Success message found with product name '{product_name}'")
             print(f"   Message: {message_text}")
             return self
-            
+
         except Exception as e:
             print(f"❌ Error: {e}")
             raise
@@ -64,15 +64,15 @@ class ProductPage(BasePage):
                 *ProductPageLocators.BASKET_TOTAL_MESSAGE
             )
             total_text = basket_total.text
-            
+
             # Проверяем, что цены совпадают
             assert product_price in total_text, \
                 f"Expected '{product_price}' in basket total, but got: {total_text}"
-            
+
             print(f"✅ Basket total message found with price '{product_price}'")
             print(f"   Message: {total_text}")
             return self
-            
+
         except Exception as e:
             print(f"❌ Error: {e}")
             raise
